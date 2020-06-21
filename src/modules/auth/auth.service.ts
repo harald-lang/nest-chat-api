@@ -35,7 +35,7 @@ export class AuthService {
    * Signs the user to the application by generating JWT tokens
    *
    * @param credentials - The user credentials
-   * @returns data - The access and the refresh token to authenticate the user and the user
+   * @returns data - The access and the refresh token to authenticate the user
    */
   async sign(credentials: { email: string; password: string }): Promise<any> {
     const user = await this.usersService.findOne({ email: credentials.email });
@@ -49,7 +49,7 @@ export class AuthService {
     const isValid = await this.checkUserPassword(user, credentials.password);
     if (!isValid)
       throw new HttpException(
-        'The email/password combinaison is invalid',
+        'The email/password combination is invalid',
         HttpStatus.BAD_REQUEST
       );
 
